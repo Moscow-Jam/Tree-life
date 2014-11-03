@@ -10,12 +10,13 @@ int min(a,b){
 
 class Weather{
 private:
-	int temperature;
-	int humidity;
-	int precipitation;
-	int wind_velocity;
-	int wind_direction;
-	int season;
+	int humidity; 		//amount of water in ground
+	int precipitation; 	//amount of water from clouds
+	double clouds; 		//percentage of light
+	double season; 		//amount of light everyday
+	int temperature		//not used
+	int wind_velocity; 	//not used
+	int wind_direction; //not used
 public:
 	int get_sun();
 	int get_water();
@@ -43,13 +44,36 @@ private:
 	int water;
 	int coefficient;
 	int bonus;
+	int growth;
 public: 
-	int GameTick();
+	int get_growth();
 };
 
-int Growth::GameTick(){
-	sun = get_sun();
-	water = get_water();
+int Weather::get_sun(){
+	int sun;
+	sun = clowds * season;
+	return sun;
+}
+
+int Weather::get_water(){
+	int water;
+	water = humidity + precipitation;
+	return water;
+}
+
+int Level::get_coefficient(){
+	int coefficient;
+	coefficient = 
+	return coefficient;
+}
+
+int Growth::get_growth(){
+	sun = Weather::get_sun();
+	water = Weather::get_water();
+	coefficient = Level::get_coefficient();
+	bonus = Bonus::get_bonus();
 	
 	growth = min(sun,water) * coefficient * (1 + bonus);
+	return growth;
 }
+
